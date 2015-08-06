@@ -2,18 +2,25 @@ define([
 	'jquery', 
 	'backbone', 
 	'underscore', 
-	'views/view'], 
-function($, Backbone, _, mainView){
+	'views/Menu',
+	'views/Play',
+	'views/Records'
+], 
+function($, Backbone, _, Menu, Play, Records){
 	var Router = Backbone.Router.extend({
-		initialize: function(){
-			this.mainView = mainView;
-			Backbone.history.start();
-		},
 		routes: {
-			'': 'home'
+			'': 'menu',
+			'play': 'play',
+			'records': 'records'
 		},
-		'home': function(){
-			this.mainView.render();
+		'menu': function(){
+			Menu.render();
+		},
+		'play': function(){
+			Play.render();
+		},
+		'records': function(){
+			Records.render();
 		}
 	});
 	

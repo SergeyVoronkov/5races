@@ -1,0 +1,88 @@
+@import "compass/reset";
+@import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Rock+Salt);
+
+$width: 800px;
+$height: 600px;
+
+$top-menu-height: 28px;
+
+$color-back: orange;
+
+body {
+	background: $color-back;
+	min-width: $width + 40px;
+	font-family: 'Rock Salt', cursive;
+}
+
+
+
+h1 {
+	color: white;
+	font-size: 50px;
+	padding:20px;
+}
+.main-wrapper {
+	width: 100%;
+	
+}
+#main {
+	position: relative;
+	width: $width;
+	height: $height + $top-menu-height;
+	margin:0 auto;
+	background: white;
+}
+@media screen and (min-height: $height + $top-menu-height + 100px)
+{
+	.main-wrapper {
+		position: absolute;
+		top: 50%;
+		height:1px;
+	}
+	#main {
+		top: -($height + $top-menu-height)/2;
+	}
+}
+.button {
+	padding: 2px 10px;
+	background: $color-back;
+	display: inline-block;
+	color: white;
+	cursor: pointer;
+	@include border-radius(5px);
+	text-decoration: none;
+}
+.menu-wrapper {
+	h2 {
+		color: $color-back;
+		text-align: center;
+		padding: 175px 0 10px 0;
+		font-size: 50px;
+	}
+	ul.menu {
+		width: 200px;
+		margin: 0 auto;
+		li {
+			background: $color-back;
+			display: block;
+			margin:5px 0;
+			padding: 10px;
+			text-align: center;
+			cursor: pointer;
+			@include border-radius(5px);
+		}
+	}
+}
+.screen-play {
+	padding-top: 2px;
+	.top-menu {
+		border: 1px solid $color-back;
+		margin: 0 2px 2px;
+		padding: 2px;
+	}
+	canvas {
+		width: $width;
+		height: $height;
+	}
+}

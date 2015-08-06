@@ -23,4 +23,6 @@ require([
 	], 
 	function(_, Backbone, app){
 		app.init();
+		Backbone.history.start();
+		window.app = app;
 });
