@@ -17,11 +17,13 @@
 define([
 		'jquery', 
 		'backbone',
-		'underscore', 
+		'underscore',
+		'Phaser',
 		'text!templates/screens/play.html',
 		'text!templates/top_menu.html'
 ], 
-function($, Backbone, _, template, tplMenu){
+function($, Backbone, _, Phaser, template, tplMenu){
+		
 	var Play = Backbone.View.extend({
 		el: '#main',
 		template: _.template(template),
@@ -31,10 +33,27 @@ function($, Backbone, _, template, tplMenu){
 			}
 		},
 		render: function(){
+			var width = 800, height = 600;
 			this.$el.html(this.template({
-				topMenu: tplMenu
+				topMenu: tplMenu,
+				width: width,
+				height: height
 			}));
-		}
+			var contextContener = this.$el.find('.context-wrapper');
+			window.game = new Phaser.Game(contextContener.width(), contextContener.height(), Phaser.AUTO, contextContener[0], { preload: preload, create: create, update: update });
+
+			function preload()
+			{
+			}
+
+			function create()
+			{
+			}
+
+			function update()
+			{
+			}
+		},
 	});
 	
 	return new Play();

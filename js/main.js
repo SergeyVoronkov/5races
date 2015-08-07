@@ -2,7 +2,8 @@
 require.config({ 
     'paths': { 
 		"underscore": "libs/underscore-min", 
-		"backbone": "libs/backbone-min"
+		"backbone": "libs/backbone-min",
+		"Phaser": "libs/phaser.min",
 	},
 	'shim': 
 	{

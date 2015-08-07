@@ -110,8 +110,9 @@ h1 {
     border: 1px solid orange;
     margin: 0 2px 2px;
     padding: 2px; }
-  .screen-play canvas {
+  .screen-play .context-wrapper {
     width: 800px;
-    height: 600px; }
+    height: 600px;
+    border: 1px solid orange; }
 
 /*# sourceMappingURL=main.css.map */
