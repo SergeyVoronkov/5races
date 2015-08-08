@@ -18,11 +18,11 @@ define([
 		'jquery', 
 		'backbone',
 		'underscore',
-		'Phaser',
+		'game',
 		'text!templates/screens/play.html',
 		'text!templates/top_menu.html'
 ], 
-function($, Backbone, _, Phaser, template, tplMenu){
+function($, Backbone, _, Game, template, tplMenu){
 		
 	var Play = Backbone.View.extend({
 		el: '#main',
@@ -33,26 +33,40 @@ function($, Backbone, _, Phaser, template, tplMenu){
 			}
 		},
 		render: function(){
-			var width = 800, height = 600;
+			var width = 800, height = 600, tilesprite;
 			this.$el.html(this.template({
 				topMenu: tplMenu,
 				width: width,
 				height: height
 			}));
 			var contextContener = this.$el.find('.context-wrapper');
-			window.game = new Phaser.Game(contextContener.width(), contextContener.height(), Phaser.AUTO, contextContener[0], { preload: preload, create: create, update: update });
-
-			function preload()
-			{
-			}
-
-			function create()
-			{
-			}
-
-			function update()
-			{
-			}
+			Game.init(contextContener,{
+				width: 800,
+				height: 600,
+				road:[
+					{type:'start', x: 4, y: 1, r: 1},
+					{type:'road', x: 5, y: 1, r: 1},
+					{type:'road', x: 6, y: 1, r: 1},
+					{type:'lroad', x: 7, y: 1, r: 2},
+					{type:'road', x: 7, y: 2, r: 2},
+					{type:'road', x: 7, y: 3, r: 2},
+					{type:'road', x: 7, y: 4, r: 2},
+					{type:'lroad', x: 7, y: 5, r: 1},
+					{type:'road', x: 6, y: 5, r: 3},
+					{type:'road', x: 5, y: 5, r: 3},
+					{type:'road', x: 4, y: 5, r: 3},
+					{type:'road', x: 3, y: 5, r: 3},
+					{type:'road', x: 2, y: 5, r: 3},
+					{type:'lroad', x: 1, y: 5, r: 0},
+					{type:'road', x: 1, y: 4, r: 0},
+					{type:'road', x: 1, y: 3, r: 0},
+					{type:'road', x: 1, y: 2, r: 0},
+					{type:'lroad', x: 1, y: 1, r: 3},
+					{type:'road', x: 2, y: 1, r: 1},
+					{type:'road', x: 3, y: 1, r: 1},
+				]
+			});
+			
 		},
 	});
 	
