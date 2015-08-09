@@ -14,30 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
 define([
 		'jquery', 
 		'backbone',
-		'underscore',
-		'models/Menu',
-		'text!templates/screens/menu.html',
-	], 
-function($, Backbone, _, Menu, template){
-	var ViewMenuItem = Backbone.View.extend({
+		'underscore', 
+		'models/Car',
+		'text!templates/screens/selectcar.html'], 
+function($, Backbone, _,Car, template){
+	var CarView = Backbone.View.extend({
 		tagName: 'li',
 		events:{
 			'click': 'select'
 		},
 		render: function(){
-			this.$el.html( this.model.get('text') );
+			this.$el.html( '<img src="'+this.model.get('img')+'" alt=""/>' );
 			return this;
 		},
 		select:function()
 		{
-			Backbone.history.navigate(this.model.get('href'),true)
+			Backbone.history.navigate('play');
+			app.router.play(this.model);
 		}
 	});
 	
-	var ViewMenu = Backbone.View.extend({
+	var SelectCar = Backbone.View.extend({
 		el: '#main',
 		template: _.template(template),
 		render: function(){
@@ -47,16 +49,13 @@ function($, Backbone, _, Menu, template){
 			return this;
 		},
 		renderItem:function(model){
-			var view = new ViewMenuItem({ model: model });
+			var view = new CarView({ model: model });
 			return view.render().el;
 		}
 	});
-		
-	return new ViewMenu({model: new Menu.Colection([
-		{text:'Играть', href: 'selectcar'},
-		{text:'Рекорды', href: 'records'},
-		//{text:'Разработчики', href: 'autors'},
+	
+	return new SelectCar({model: new Car.Colection([
+		{text:'Фиалетовая', id: 'car1', img: 'assets/car1.png'},
+		{text:'Зеленая', id: 'car2', img: 'assets/car2.png'},
 	])});
 });
-
-
